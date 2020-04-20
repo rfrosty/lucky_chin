@@ -1,8 +1,7 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
 
-
-function InvList(){
+function Inventory(){
     return(
  <Table striped bordered hover>
   <thead>
@@ -33,7 +32,7 @@ function InvList(){
     </tr>
   </tbody>
 </Table>
-
-
     );
 }
+
+export default Inventory;

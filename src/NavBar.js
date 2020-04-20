@@ -4,7 +4,10 @@ const NavBar = (props) => {
   return (
     <header>
       <img src="/logos/lucky_chen.png" alt="Logo"/>
-      <ul>
+      <ul className="NavBar">
+        <li>
+          <a href="/">Home</a>
+        </li>
         <li>
           <a href="/inventory">Inventory</a>
         </li>

@@ -1,12 +1,20 @@
 import React from 'react';
-// import Item from './item.js' //test if it works without dot.
+import Item from './Item.js' //test if it works without dot.
 
 const InventoryList = (props) => {
 
-  // const item = [5];
+  const itemList = props.inventory.map((item => {
+    return (
+    <li key={item.id} className="list-item" >
+      <Item info={item}/>
+    </li>
+    )
+  }))
 
   return (
-    <div>I am an InventoryList.</div>
+    <ul>
+      {itemList}
+    </ul>
   )
 
 }

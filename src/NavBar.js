@@ -6,10 +6,10 @@ const NavBar = (props) => {
       <img src="/logos/lucky_chen.png" alt="Logo"/>
       <ul>
         <li>
-          <a href="www.google.com">Inventory</a>
+          <a href="/inventory">Inventory</a>
         </li>
         <li>
-          <a href="www.google.com">Suppliers</a>
+          <a href="/suppliers">Suppliers</a>
         </li>
       </ul>
 

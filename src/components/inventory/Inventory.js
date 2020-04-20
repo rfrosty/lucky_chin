@@ -9,15 +9,18 @@ function Inventory(){
       <th>#</th>
       <th>Item Name</th>
       <th>Quantity</th>
-      <th>Purchase Price</th>
+      <th>Purchase Price/unit</th>
+      <th>Purchase Date</th>
+      <td>Expiry Date</td> 
+      <td>Supplier Id</td> 
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>1</td>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <td>Eggs</td>
+      <td>54</td>
+      <td>1</td>
     </tr>
     <tr>
       <td>2</td>
@@ -27,7 +30,8 @@ function Inventory(){
     </tr>
     <tr>
       <td>3</td>
-      <td colSpan="2">Larry the Bird</td>
+      <td>Larry the Bird</td>
+      <td>@twitter</td>
       <td>@twitter</td>
     </tr>
   </tbody>

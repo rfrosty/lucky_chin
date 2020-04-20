@@ -7,6 +7,7 @@ import Suppliers from './components/suppliers/suppliers';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Header1 from './components/Header1';
 import Footer from './components/Footer';
+import addNew from './components/addNew/addNew'
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
       {/* <HomepageContent/> */}
       <Route path="/Inventory" component={Inventory} />
       <Route path="/supplier" component={Suppliers}/>
+      <Route path="/addNew" component={addNew}/>
       </Switch>
       <Footer/>
     </div>

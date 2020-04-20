@@ -1,9 +1,10 @@
 import React from 'react';
+import NavBar from '../NavBar.js'
 
 const MainContainer = () => {
   return (
     <>
-      <p>I am the MainContainer.</p>
+      <NavBar/>
     </>
   )
 }

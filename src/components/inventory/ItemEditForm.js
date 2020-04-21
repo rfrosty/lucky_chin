@@ -29,14 +29,15 @@ class ItemEditForm extends Component {
 
     let item = {
       "name": event.target.name.value,
-      "quantity": event.target.quantity.value,
+      "quantity": parseInt(event.target.quantity.value),
       "dateOfPurchase": event.target.dop.value,
       "expiryDate": event.target.ed.value,
-      "purchasePrice": event.target.pp.value,
-      "supplierID": this.state.suppliers[selectedIndex].id
+      "purchasePrice": parseInt(event.target.pp.value),
+      "supplierID": parseInt(this.state.suppliers[selectedIndex].id),
+      "id": id
     }
-    console.log(id);
-    console.log(item);
+    console.log("This is the selected item's id:", id);
+    console.log("This is the item:", item);
     return this.props.onUpdate(id, item);
   }
 

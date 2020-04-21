@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import InventoryList from '../../components/inventory/InventoryList.js';
 import ItemEditForm from '../../components/inventory/ItemEditForm.js';
+import InventoryCreateForm from '../../components/inventory/InventoryCreateForm.js';
 
 import Request from '../../helpers/request.js'
 // import Item from '../../components/suppliers/SupplierList.js';
@@ -17,6 +18,8 @@ class InventoryContainer extends Component {
         {"name": "rice", "quantity": 2, "dateOfPurchase": "4/4/20", "expiryDate": "4/5/20", "purchasePrice": 12.60, "supplierID": 1, "id": 3}
       ]
     }
+    this.findItemById = this.findItemById.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
   }
 
   findItemById(id){
@@ -25,22 +28,22 @@ class InventoryContainer extends Component {
     });
   }
 
-  handleUpdate(id, item){
-    // let inventoryState = this.state.inventory;
-    // let itemToReplace = inventoryState.find((item) => {
-    //   return item.id === parseInt(id);
-    // })
-    // let emptiedArray = this.state.inventory.filter((item) => {
-    //   return item.id !== parseInt(id);
-    // })
-    console.log(5);
-
-    return 5;
-
-
-
-    // this.setState([...emptiedArray, item])
-    //
+  handleUpdate(id, item){ //does method have to return anything❓
+    //*FIND INDEX OF ITEM.
+    // *CHANGE IT.
+    let inventoryState = this.state.inventory;
+    let itemIndex = inventoryState.findIndex((element) => {
+      return element.id === id;
+    });
+    inventoryState[itemIndex] = item;
+    // console.log("This is itemIndex:", itemIndex);
+    // console.log("This is the newState:", inventoryState);
+    this.setState({inventory: inventoryState})
+    // window.location = '/inventory';
+//---------------------------------------------------------------------------------------------//
+// ARESKY: navigation component. global state management using redux.
+// redirect tag.
+//---------------------------------------------------------------------------------------------//
     // const request = new Request;
     // request.patch('/inventory/' + id, item).then(() => { //how a function works - not needing to return anything here.
     //   window.location = '/pirates/' + id
@@ -54,17 +57,19 @@ class InventoryContainer extends Component {
       <h1>Inventory</h1>
       <Switch>
 
+        <Route exact path = "/inventory/new" render={() => {
+          return <InventoryCreateForm onFormSubmit={this.handlePost} />
+        }}/>
+
+        {/*<Route exact path = '/pirates/new' render={() =>{
+          return <PirateCreateForm onFormSubmit= {this.handlePost} />
+        }}/>*/}
+
         <Route exact path="/inventory/:id/edit" render={(props) => {
         const id = props.match.params.id
         const item = this.findItemById(id);
         return <ItemEditForm item={item} onUpdate={this.handleUpdate} />
         }}/>
-
-        {/*}<Route exact path="/pirates/:id/edit" render={(props) =>{
-        const id = props.match.params.id
-        const pirate = this.findPirateById(id);
-        return <PirateEditForm pirate={pirate} onUpdate={this.handleUpdate}/>
-      }}/>*/}
 
         <Route render = {(props) => {
           return <InventoryList inventory={this.state.inventory}/>

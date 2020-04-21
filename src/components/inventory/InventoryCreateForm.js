@@ -67,8 +67,9 @@ class InventoryCreateForm extends Component {
         {supplierOptions}
         </select>
 
-        <input type="submit" value="save" /><br/>
         <button><a href="/suppliers/new">Add new supplier</a></button>
+
+        <input type="submit" value="save" /><br/>
       </form>
       </>
     )

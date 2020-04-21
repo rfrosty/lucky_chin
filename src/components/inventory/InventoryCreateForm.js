@@ -13,7 +13,7 @@ class InventoryCreateForm extends Component {
 
     return (
       <>
-        <p>I am an ICF.</p>
+        <p>I am an ICF. </p>
       </>
     )
   }

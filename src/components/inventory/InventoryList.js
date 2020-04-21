@@ -12,9 +12,12 @@ const InventoryList = (props) => {
   }))
 
   return (
+    <>
+    <button><a href="/inventory/new">Add item</a></button>
     <ul>
       {itemList}
     </ul>
+    </>
   )
 
 }

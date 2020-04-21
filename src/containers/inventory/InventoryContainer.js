@@ -31,9 +31,14 @@ class InventoryContainer extends Component {
     });
   }
 
-  handleDelete(payload){
-    console.log(payload);
-    return 5
+  handleDelete(id){
+    let inventoryState = this.state.inventory;
+    let itemIndex = inventoryState.findIndex((element) => {
+      return element.id === id;
+    });
+    inventoryState.splice(itemIndex, 1);
+    this.setState({inventory: inventoryState})
+    console.log(inventoryState);
   }
 
   handlePost(payload){
@@ -83,7 +88,7 @@ class InventoryContainer extends Component {
 
         <Route exact path="/inventory/:id/delete" render={(props) =>{
         const id = props.match.params.id
-        const item = this.findItemById(id)
+        const item = this.findItemById(id);
         return <ConfirmDelete item={item} onDelete={this.handleDelete} />
         }}/>
 

@@ -20,12 +20,19 @@ class InventoryContainer extends Component {
     }
     this.findItemById = this.findItemById.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
+    this.handlePost = this.handlePost.bind(this);
   }
 
   findItemById(id){
     return this.state.inventory.find((item) => {
       return item.id === parseInt(id);
     });
+  }
+
+  handlePost(payload){
+    let inventoryState = this.state.inventory;
+    let newState = [...inventoryState, payload];
+    this.setState({inventory: newState})
   }
 
   handleUpdate(id, item){ //does method have to return anything❓

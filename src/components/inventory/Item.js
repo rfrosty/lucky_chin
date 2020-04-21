@@ -4,8 +4,7 @@ const Item = (props) => {
 
   const id = props.info.id.toString();
   const editURL = "/inventory/" + id + "/edit";
-  const editURLTwo = "/item/edit"
-  const deleteURL = "/item/" + id + "/delete";
+  const deleteURL = "/inventory/" + id + "/delete";
 
   return (
     <>

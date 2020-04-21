@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import InventoryList from '../../components/inventory/InventoryList.js';
 import ItemEditForm from '../../components/inventory/ItemEditForm.js';
 import InventoryCreateForm from '../../components/inventory/InventoryCreateForm.js';
+import ConfirmDelete from '../../components/inventory/ConfirmDelete.js';
 
 import Request from '../../helpers/request.js'
 // import Item from '../../components/suppliers/SupplierList.js';
@@ -21,12 +22,18 @@ class InventoryContainer extends Component {
     this.findItemById = this.findItemById.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
     this.handlePost = this.handlePost.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   findItemById(id){
     return this.state.inventory.find((item) => {
       return item.id === parseInt(id);
     });
+  }
+
+  handleDelete(payload){
+    console.log(payload);
+    return 5
   }
 
   handlePost(payload){
@@ -68,14 +75,16 @@ class InventoryContainer extends Component {
           return <InventoryCreateForm onFormSubmit={this.handlePost} />
         }}/>
 
-        {/*<Route exact path = '/pirates/new' render={() =>{
-          return <PirateCreateForm onFormSubmit= {this.handlePost} />
-        }}/>*/}
-
         <Route exact path="/inventory/:id/edit" render={(props) => {
         const id = props.match.params.id
         const item = this.findItemById(id);
         return <ItemEditForm item={item} onUpdate={this.handleUpdate} />
+        }}/>
+
+        <Route exact path="/inventory/:id/delete" render={(props) =>{
+        const id = props.match.params.id
+        const item = this.findItemById(id)
+        return <ConfirmDelete item={item} onDelete={this.handleDelete} />
         }}/>
 
         <Route render = {(props) => {

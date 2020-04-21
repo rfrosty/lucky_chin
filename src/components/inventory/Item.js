@@ -14,6 +14,7 @@ const Item = (props) => {
     Quantity: {props.info.quantity}<br/>
     Date of purchase: {props.info.dateOfPurchase}<br/>
     Expiry date: {props.info.expiryDate}<br/>
+    Purchase Price: £{props.info.purchasePrice}
     </p>
     <button><a href={editURL}>Edit '{props.info.name}'</a></button>
     <button><a href={deleteURL}>Delete '{props.info.name}'</a></button>

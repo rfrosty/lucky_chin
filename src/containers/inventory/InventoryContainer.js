@@ -39,30 +39,39 @@ class InventoryContainer extends Component {
     inventoryState.splice(itemIndex, 1);
     this.setState({inventory: inventoryState})
     console.log(inventoryState);
+    // *FOR DB*
+    // const request = new Request();
+    // const url = '/pirates/' + id;
+    // request.delete(url).then(() => {
+    //   window.location = '/pirates';
+    // });
   }
 
   handlePost(payload){
     let inventoryState = this.state.inventory;
     let newState = [...inventoryState, payload];
     this.setState({inventory: newState})
+    // *FOR DB*
+    // const request = new Request();
+    // request.post('/pirates', pirate).then(() => {
+    //   window.location = '/pirates'
+    // })
   }
 
   handleUpdate(id, item){ //does method have to return anything❓
     //*FIND INDEX OF ITEM.
-    // *CHANGE IT.
     let inventoryState = this.state.inventory;
     let itemIndex = inventoryState.findIndex((element) => {
       return element.id === id;
     });
+    // *CHANGE IT.
     inventoryState[itemIndex] = item;
-    // console.log("This is itemIndex:", itemIndex);
-    // console.log("This is the newState:", inventoryState);
     this.setState({inventory: inventoryState})
-    // window.location = '/inventory';
 //---------------------------------------------------------------------------------------------//
 // ARESKY: navigation component. global state management using redux.
 // redirect tag.
 //---------------------------------------------------------------------------------------------//
+    // *FOR DB*
     // const request = new Request;
     // request.patch('/inventory/' + id, item).then(() => { //how a function works - not needing to return anything here.
     //   window.location = '/pirates/' + id

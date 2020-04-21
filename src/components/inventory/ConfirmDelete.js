@@ -3,7 +3,7 @@ import React from 'react';
 const ConfirmDelete = (props) => { //do variables need to be spelled CamelCase❓
 
   if (!props.item) {
-    return <p>This item has been deleted.</p>
+    return <p>This item has doesn't exist or has already been deleted.</p>
   }
 
   let takeHomeAndDelete = () => {

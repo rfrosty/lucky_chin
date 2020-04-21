@@ -12,9 +12,9 @@ class InventoryContainer extends Component {
     super(props);
     this.state = {
       inventory: [
-        {"id": 1, "quantity": 5, "supplierID": 2, "name": "carrots", "dateOfPurchase": "4/4/20", "expiryDate": "4/5/20", "purchasePrice": 20.05},
-        {"id": 2,"quantity": 7, "supplierID": 1, "name": "wraps", "dateOfPurchase": "4/4/20", "expiryDate": "4/5/20", "purchasePrice": 8.70},
-        {"id": 3,"quantity": 2, "supplierID": 1, "name": "rice", "dateOfPurchase": "4/4/20", "expiryDate": "4/5/20", "purchasePrice": 12.60}
+        {"name": "carrots", "quantity": 5, "dateOfPurchase": "4/4/20", "expiryDate": "4/5/20", "purchasePrice": 20.05, "supplierID": 2, "id": 1},
+        {"name": "wraps", "quantity": 7, "dateOfPurchase": "4/4/20", "expiryDate": "4/5/20", "purchasePrice": 8.70, "supplierID": 1, "id": 2},
+        {"name": "rice", "quantity": 2, "dateOfPurchase": "4/4/20", "expiryDate": "4/5/20", "purchasePrice": 12.60, "supplierID": 1, "id": 3}
       ]
     }
   }
@@ -26,8 +26,21 @@ class InventoryContainer extends Component {
   }
 
   handleUpdate(id, item){
+    // let inventoryState = this.state.inventory;
+    // let itemToReplace = inventoryState.find((item) => {
+    //   return item.id === parseInt(id);
+    // })
+    // let emptiedArray = this.state.inventory.filter((item) => {
+    //   return item.id !== parseInt(id);
+    // })
+    console.log(5);
+
+    return 5;
 
 
+
+    // this.setState([...emptiedArray, item])
+    //
     // const request = new Request;
     // request.patch('/inventory/' + id, item).then(() => { //how a function works - not needing to return anything here.
     //   window.location = '/pirates/' + id
@@ -44,7 +57,7 @@ class InventoryContainer extends Component {
         <Route exact path="/inventory/:id/edit" render={(props) => {
         const id = props.match.params.id
         const item = this.findItemById(id);
-        return <ItemEditForm item={item} update={this.handleUpdate()} />
+        return <ItemEditForm item={item} onUpdate={this.handleUpdate} />
         }}/>
 
         {/*}<Route exact path="/pirates/:id/edit" render={(props) =>{

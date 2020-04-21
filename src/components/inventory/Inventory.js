@@ -11,8 +11,8 @@ function Inventory(){
       <th>Quantity</th>
       <th>Purchase Price/unit</th>
       <th>Purchase Date</th>
-      <td>Expiry Date</td> 
-      <td>Supplier Id</td> 
+      <th>Expiry Date</th> 
+      <th>Supplier Id</th> 
     </tr>
   </thead>
   <tbody>
@@ -21,18 +21,28 @@ function Inventory(){
       <td>Eggs</td>
       <td>54</td>
       <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
     </tr>
     <tr>
       <td>2</td>
       <td>Jacob</td>
       <td>Thornton</td>
       <td>@fat</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
     </tr>
     <tr>
       <td>3</td>
       <td>Larry the Bird</td>
       <td>@twitter</td>
       <td>@twitter</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+
     </tr>
   </tbody>
 </Table>

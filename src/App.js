@@ -7,7 +7,8 @@ import Suppliers from './components/suppliers/suppliers';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Header1 from './components/Header1';
 import Footer from './components/Footer';
-import addNew from './components/addNew/addNew'
+import addNew from './components/addNew/addNew';
+// import {base} from './base';
 
 
 function App() {

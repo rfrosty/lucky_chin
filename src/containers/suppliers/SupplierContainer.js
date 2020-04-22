@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import SupplierList from '../../components/suppliers/SupplierList.js';
+import SupplierEditForm from '../../components/suppliers/SupplierEditForm.js';
 
 class SupplierContainer extends Component {
 
@@ -13,6 +14,33 @@ class SupplierContainer extends Component {
         {"name": "Maqbools", "address": "23 Hermiston Gait EH30 9RP", "telephoneNumber": "07944742343", "POC": "apple", "id": 3}
       ]
     }
+    this.findItemById = this.findItemById.bind(this);
+  }
+
+  findItemById(id){
+    return this.state.suppliers.find((item) => {
+      return item.id === parseInt(id);
+    });
+  }
+
+  handleUpdate(id, payload){
+    //*FIND INDEX OF ITEM.
+    let suppliersState = this.state.suppliers;
+    let itemIndex = suppliersState.findIndex((element) => {
+      return element.id === id;
+    });
+    // *CHANGE IT.
+    suppliersState[itemIndex] = payload;
+    this.setState({suppliers: suppliersState})
+//---------------------------------------------------------------------------------------------//
+// ARESKY: navigation component. global state management using redux.
+// redirect tag.
+//---------------------------------------------------------------------------------------------//
+    // *FOR DB*
+    // const request = new Request;
+    // request.patch('/inventory/' + id, item).then(() => { //how a function works - not needing to return anything here.
+    //   window.location = '/pirates/' + id
+    // })
   }
 
   render(){
@@ -26,13 +54,15 @@ class SupplierContainer extends Component {
         <Route exact path = "/inventory/new" render={() => {
           return <InventoryCreateForm onFormSubmit={this.handlePost} />
         }}/>
+        */}
 
-        <Route exact path="/inventory/:id/edit" render={(props) => {
+        <Route exact path="/suppliers/:id/edit" render={(props) => {
         const id = props.match.params.id
-        const item = this.findItemById(id);
-        return <ItemEditForm item={item} onUpdate={this.handleUpdate} />
+        const supplier = this.findItemById(id);
+        return <SupplierEditForm item={supplier} onUpdate={this.handleUpdate} />
         }}/>
 
+        {/*
         <Route exact path="/inventory/:id/delete" render={(props) =>{
         const id = props.match.params.id
         const item = this.findItemById(id);

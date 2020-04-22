@@ -58,7 +58,7 @@ class InventoryContainer extends Component {
     // })
   }
 
-  handleUpdate(id, item){ //does method have to return anything❓
+  handleUpdate(id, item){
     //*FIND INDEX OF ITEM.
     let inventoryState = this.state.inventory;
     let itemIndex = inventoryState.findIndex((element) => {

@@ -1,6 +1,5 @@
 import React from 'react';
 import Supplier from './Supplier';
-// import Item from './Item.js' //test if it works without dot.
 
 const SupplierList = (props) => {
 

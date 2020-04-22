@@ -1,23 +1,15 @@
 import React, {Component} from 'react';
 import { Button } from 'react-bootstrap';
-import fire from '../../fire';
 
 class HomepageContent extends Component {
-  state = {
-    text: ""
-  }
-  handleText = e => {
-    this.setState({
-      text: e.target.value
-    })
-  }
-  handleSubmit = (e) => {
-    let messageRef = fire.database().ref('messages').orderByKey().limitToLast(100);
-    fire.database().ref('messages').push(this.state.text);
-    this.setState({
-      text: ""
-    })
-  }
+  
+ 
+ 
+ 
+ 
+
+
+
 
   render(){
     return(
@@ -41,13 +33,13 @@ class HomepageContent extends Component {
       <Button variant="secondary" size="lg">
         Edit Suppliers
       </Button>
-
         <div>
-          <input onChange={this.handleText} type="text" id="inputText"/>
-          <button onClick={this.handleSubmit}>Submit</button>
+          <form>
+          <input  type="text" id="inputText" placeholder="name"/>
+          <input type="text" id="ageText" placeholder="age"/>
+          <button >Submit</button>
+          </form>
         </div>
-
-
     </div>
     </> 
     );

@@ -11,7 +11,8 @@ const MainContainer = () => {
     <>
     <NavBar/>
     <Switch>
-      {/*}<Route path="/inventory/:id/edit" component={ItemEditForm}/> //most specific has to be at the top. If we wanted this and it were below 'inventory', it would've been happy with 'inventory' and just hit that.*/}
+      {/*}<Route path="/inventory/:id/edit" component={ItemEditForm}/> //most specific has to be at the top.
+      If we wanted this and it were below 'inventory', it would've been happy with 'inventory' and just hit that.*/}
       <Route path="/inventory" component={InventoryContainer}/>
     </Switch>
     </>

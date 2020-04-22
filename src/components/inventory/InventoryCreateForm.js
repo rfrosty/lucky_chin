@@ -37,7 +37,7 @@ class InventoryCreateForm extends Component {
 
     if (this.state.suppliers.length === 0) {
       return <button><a href="/supplier/new">Please add a supplier first before adding an item. Click <strong>here.</strong></a></button>
-    } {/*Can't return a custom-made element here❓*/}
+    } {/*Can't return a custom-made element here❓Still wouldn't work with brackets.*/}
 
     const supplierOptions = this.state.suppliers.map((item) => {
       return <option key={item.id} value={item.name}>{item.name}</option>

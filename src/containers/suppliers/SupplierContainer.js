@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import SupplierList from '../../components/suppliers/SupplierList.js';
 
 class SupplierContainer extends Component {
 
@@ -16,7 +17,36 @@ class SupplierContainer extends Component {
 
   render(){
     return(
-      <p>I am a suppliercontainer.</p>
+      <Router>
+      <>
+      <h1>Suppliers</h1>
+      <Switch>
+
+        {/*
+        <Route exact path = "/inventory/new" render={() => {
+          return <InventoryCreateForm onFormSubmit={this.handlePost} />
+        }}/>
+
+        <Route exact path="/inventory/:id/edit" render={(props) => {
+        const id = props.match.params.id
+        const item = this.findItemById(id);
+        return <ItemEditForm item={item} onUpdate={this.handleUpdate} />
+        }}/>
+
+        <Route exact path="/inventory/:id/delete" render={(props) =>{
+        const id = props.match.params.id
+        const item = this.findItemById(id);
+        return <ConfirmDelete item={item} onDelete={this.handleDelete} />
+        }}/>
+        */}
+
+        <Route render = {(props) => {
+          return <SupplierList suppliers={this.state.suppliers}/>
+        }}/>
+
+      </Switch>
+      </>
+      </Router>
     )
   }
 

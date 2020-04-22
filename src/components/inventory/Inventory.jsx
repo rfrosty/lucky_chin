@@ -24,7 +24,6 @@ function useInventory(){
 
 const Inventory = () => {
   const inventoryItems = useInventory();
-
   const renderedItems = inventoryItems.map((item,index) => 
     <tr key={index}>
     <td>{index}</td>
@@ -33,10 +32,9 @@ const Inventory = () => {
     <td>{item.purchaseP}</td>
     <td>{item.purchaseDate}</td>
     <td>{item.expiryDate}</td>
-
+    <td>--</td>
+    <td><button>Edit</button></td>
     </tr>
-
-    
     )
   
     return(
@@ -50,22 +48,12 @@ const Inventory = () => {
       <th>Purchase Price/unit</th>
       <th>Purchase Date</th>
       <th>Expiry Date</th> 
-      <th>Supplier Id</th> 
+      <th>Supplier Id</th>
+      <th>Edit/Delete</th> 
     </tr>
   </thead>
   <tbody>
-    {/* <tr>
-      <td>1</td>
-      <td>Eggs</td>
-      <td>54</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-    </tr> */}
       {renderedItems}
-   
-
   </tbody>
 </Table>
 </div>

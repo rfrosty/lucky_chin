@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class SupplierEditForm extends Component {
+class SupplierCreateForm extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -10,18 +10,15 @@ class SupplierEditForm extends Component {
 
   handleSubmit(event){
     event.preventDefault();
-    let id = this.props.supplier.id;
 
     let supplier = {
       "name": event.target.name.value,
       "address": parseInt(event.target.address.value),
       "telephoneNumber": event.target.telephoneNumber.value,
       "POC": event.target.POC.value,
-      "id": id
+      "id": Math.random()
     }
-    console.log("This is the selected supplier's id:", id);
-    console.log("This is the supplier:", supplier);
-    return this.props.onUpdate(id, supplier);
+    return this.props.onFormSubmit(supplier);
   }
 
   render(){
@@ -31,16 +28,16 @@ class SupplierEditForm extends Component {
       <form onSubmit={this.handleSubmit}>
 
         <label for="name">Name:</label>
-        <input type="text" name="name" id="name" defaultValue={this.props.supplier.name} />
+        <input type="text" name="name" id="name" />
 
         <label for="address">Address:</label>
-        <input type="text" name="address" id="address" min="0" defaultValue={this.props.supplier.address} />
+        <input type="text" name="address" id="address" min="0" />
 
         <label for="telephoneNumber">Telephone Number:</label>
-        <input type="text" name="telephoneNumber" id="telephoneNumber" defaultValue={this.props.supplier.telephoneNumber} />
+        <input type="text" name="telephoneNumber" id="telephoneNumber" />
 
         <label for="POC">POC:</label>
-        <input type="text" name="POC" id="POC" defaultValue={this.props.supplier.POC} />
+        <input type="text" name="POC" id="POC" />
 
         <input type="submit" value="save" />
       </form>
@@ -50,4 +47,4 @@ class SupplierEditForm extends Component {
 
 }
 
-export default SupplierEditForm;
+export default SupplierCreateForm;

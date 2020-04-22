@@ -13,7 +13,7 @@ const SupplierList = (props) => {
 
   return (
     <>
-    <button><a href="/supplier/new">Add supplier</a></button>
+    <button><a href="/suppliers/new">Add supplier</a></button>
     <ul>
       {supplierList}
     </ul>

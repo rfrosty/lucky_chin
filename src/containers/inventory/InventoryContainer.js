@@ -38,7 +38,6 @@ class InventoryContainer extends Component {
     });
     inventoryState.splice(itemIndex, 1);
     this.setState({inventory: inventoryState})
-    console.log(inventoryState);
     // *FOR DB*
     // const request = new Request();
     // const url = '/pirates/' + id;

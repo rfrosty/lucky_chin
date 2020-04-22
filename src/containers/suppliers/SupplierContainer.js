@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import SupplierList from '../../components/suppliers/SupplierList.js';
 import SupplierEditForm from '../../components/suppliers/SupplierEditForm.js';
 import SupplierCreateForm from '../../components/suppliers/SupplierCreateForm.js';
+import ConfirmDelete from '../../components/suppliers/ConfirmDelete.js';
 
 class SupplierContainer extends Component {
 
@@ -15,12 +16,13 @@ class SupplierContainer extends Component {
         {"name": "Maqbools", "address": "23 Hermiston Gait EH30 9RP", "telephoneNumber": "07944742343", "POC": "apple", "id": 3}
       ]
     }
-    this.findItemById = this.findItemById.bind(this);
+    this.findSupplierById = this.findSupplierById.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
     this.handlePost = this.handlePost.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
-  findItemById(id){
+  findSupplierById(id){
     return this.state.suppliers.find((item) => {
       return item.id === parseInt(id);
     });
@@ -57,6 +59,21 @@ class SupplierContainer extends Component {
     // })
   }
 
+  handleDelete(id){
+    let suppliersState = this.state.suppliers;
+    let itemIndex = suppliersState.findIndex((element) => {
+      return element.id === id;
+    });
+    suppliersState.splice(itemIndex, 1);
+    this.setState({suppliers: suppliersState})
+    // *FOR DB*
+    // const request = new Request();
+    // const url = '/pirates/' + id;
+    // request.delete(url).then(() => {
+    //   window.location = '/pirates';
+    // });
+  }
+
   render(){
     return(
       <Router>
@@ -68,20 +85,17 @@ class SupplierContainer extends Component {
           return <SupplierCreateForm onFormSubmit={this.handlePost} />
         }}/>
 
-
         <Route exact path="/suppliers/:id/edit" render={(props) => {
         const id = props.match.params.id
-        const supplier = this.findItemById(id);
+        const supplier = this.findSupplierById(id);
         return <SupplierEditForm supplier={supplier} onUpdate={this.handleUpdate} />
         }}/>
 
-        {/*
         <Route exact path="/suppliers/:id/delete" render={(props) =>{
         const id = props.match.params.id
-        const item = this.findItemById(id);
-        return <ConfirmDelete item={item} onDelete={this.handleDelete} />
+        const supplier = this.findSupplierById(id);
+        return <ConfirmDelete supplier={supplier} onDelete={this.handleDelete} />
         }}/>
-        */}
 
         <Route render = {(props) => {
           return <SupplierList suppliers={this.state.suppliers}/>

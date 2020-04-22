@@ -20,7 +20,7 @@ function Header1() {
       </Nav.Item>
       <Nav.Item>
         <Nav.Link href="/addNew">
-          Add New
+          Add New Inventory
         </Nav.Link>
       </Nav.Item>
     </Nav>

@@ -51,7 +51,7 @@ class InventoryCreateForm extends Component {
         <input type="text" name="name" id="name" />
 
         <label for="quantity">Quantity:</label>
-        <input type="number" name="quantity" id="quantity" />
+        <input type="number" name="quantity" min="0" id="quantity" />
 
         <label for="dop">Date of Purchase:</label>
         <input type="text" name="dop" id="dop" />

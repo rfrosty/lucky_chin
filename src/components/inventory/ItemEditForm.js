@@ -56,7 +56,7 @@ class ItemEditForm extends Component {
         <input type="text" name="name" id="name" defaultValue={this.props.item.name} />
 
         <label for="quantity">Quantity:</label>
-        <input type="number" name="quantity" id="quantity" defaultValue={this.props.item.quantity} />
+        <input type="number" name="quantity" id="quantity" min="0" defaultValue={this.props.item.quantity} />
 
         <label for="dop">Date of Purchase:</label>
         <input type="text" name="dop" id="dop" defaultValue={this.props.item.dateOfPurchase} />

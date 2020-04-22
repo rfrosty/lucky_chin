@@ -26,27 +26,6 @@ const NavBar = (props) => {
         <li>About to expire (flashes red x amount of days before?)</li>
       </ul>
 
-      PIRATES
-
-      <ul>
-        <li className="navLink"> //don't understand why we haven't used link tag. Guess links to routes work.
-          <a href="/pirates">Pirates</a>
-        </li>
-        <li className="navLink">
-        <a href="/pirates/new">Create Pirate</a>
-        </li>
-        <li className="navLink">
-          <a href="/ships">Ships</a>
-        </li>
-        <li className="navLink">
-          <a href="/ships/new">Create Ship</a>
-        </li>
-        <li className="navLink">
-          <a href="/ships/dew">Create Dew</a>
-        </li>
-
-      </ul>
-
       */}
 
     </header>

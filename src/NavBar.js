@@ -1,9 +1,10 @@
 import React from 'react';
+import {Navbar, Nav} from 'react-bootstrap';
 
 const NavBar = (props) => {
   return (
     <header>
-      <img src="/logos/lucky_chen.png" alt="Logo"/>
+      {/* <img src="/logos/lucky_chen.png" alt="Logo"/>
       <ul className="NavBar">
         <li>
           <a href="/">Home</a>
@@ -14,7 +15,27 @@ const NavBar = (props) => {
         <li>
           <a href="/suppliers">Suppliers</a>
         </li>
-      </ul>
+      </ul> */}
+
+    <Navbar bg="light" expand="lg">
+      <Navbar.Brand href="/"><img src="/logos/lucky_chen.png" alt="Logo" height="100px"/>
+</Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="ml-auto">
+          <Nav.Link href="/">Home</Nav.Link>
+          <Nav.Link href="/inventory">Inventory</Nav.Link>
+          <Nav.Link href="/suppliers">Suppliers</Nav.Link>
+
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
+
+
+
+
+
+
 
 
       {/*

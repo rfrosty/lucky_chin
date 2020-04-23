@@ -10,6 +10,8 @@ const InventoryList = (props) => {
 
   const editURL = "/inventory/" + id + "/edit";
   const deleteURL = "/inventory/" + id + "/delete";
+
+  
     return (
     // <li key={item.id} className="list-item" >
     //   <Item info={item}/>
@@ -30,7 +32,7 @@ const InventoryList = (props) => {
 
   return (
     <>
-    <Table striped bordered hover>
+    <Table striped bordered hover className="table1">
   <thead>
     <tr>
       <th>Item Name</th>

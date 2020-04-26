@@ -43,10 +43,10 @@ const InventoryCreateForm = () => {
     <input type="number" name="quantity" min="0" id="quantity" value={quantity} onChange={e=>setQuantity(e.currentTarget.value)}/>
 
     <label for="dop">Date of Purchase:</label>
-    <input type="text" name="dop" id="dop" value={purchaseDate} onChange={e=>setPurchaseDate(e.currentTarget.value)}/>
+    <input type="date" name="dop" id="dop" value={purchaseDate} onChange={e=>setPurchaseDate(e.currentTarget.value)}/>
 
     <label for="ed">Expiry Date:</label>
-    <input type="text" name="ed" id="ed" value={expiryDate} onChange={e=>setExpiryDate(e.currentTarget.value)}/>
+    <input type="date" name="ed" id="ed" value={expiryDate} onChange={e=>setExpiryDate(e.currentTarget.value)}/>
 
     <label for="pp">Purchased Price</label>
     <input type="number" name="pp" id="pp" step="0.01" min="0" value={purchaseP} onChange={e=>setPurchaseP(e.currentTarget.value)} />

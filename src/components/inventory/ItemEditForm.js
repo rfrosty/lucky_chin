@@ -1,82 +1,74 @@
-import React, {Component} from 'react';
+import React,{useEffect,useState} from 'react';
+import firebase from '../../firebase'
 
-class ItemEditForm extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      inventory: [],
-      suppliers: [
-        {"name": "Tesco", "address": "21 Hermiston Gait EH30 9RP", "telephoneNumber": "07944742345", "POC": "apple", "id": 1},
-        {"name": "Asda", "address": "22 Hermiston Gait EH30 9RP", "telephoneNumber": "07944742344", "POC": "apple", "id": 2},
-        {"name": "Maqbools", "address": "23 Hermiston Gait EH30 9RP", "telephoneNumber": "07944742343", "POC": "apple", "id": 3}
-      ]
-    }
-    this.findItemsSupplier = this.findItemsSupplier.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+const ItemEditForm = ({item}) => {
 
-  findItemsSupplier(){
-    let supplier = this.state.suppliers.find((supplier) => {
-      return supplier.id === this.props.item.supplierID;
-    })
-    return supplier.name;
-  }
+  const [dataItem,setDataItem] = useState(null);
+  
+  //data form
+  const [itemName, setItemName] = useState('')
+  const [quantity, setQuantity] = useState('')
+  const [purchaseDate, setPurchaseDate] = useState('')
+  const [purchaseP, setPurchaseP] = useState('')
+  const [expiryDate, setExpiryDate] = useState('')
 
-  handleSubmit(event){
+  const ref = firebase.firestore().collection('inventory').doc(item)
+  useEffect(() =>{
+      ref.get().then(function(doc) {
+      if (doc.exists) {
+        const data = doc.data();
+        setDataItem(doc.data());
+        setItemName(data.itemName);
+        setQuantity(data.quantity)
+        setPurchaseDate(data.purchaseDate)
+        setPurchaseP(data.purchaseP)
+        setExpiryDate(data.expiryDate)
+           
+      } else {
+          // doc.data() will be undefined in this case
+          
+      }
+  })
+    
+  }, [])
+
+  const submitEdit = (event) => {
+
+      const result =  {quantity: quantity, expiryDate: expiryDate, itemName: itemName, purchaseDate: purchaseDate, purchaseP: purchaseP}
+    ref.set(result).then(console.log('sucess upload'));
     event.preventDefault();
-    let id = this.props.item.id;
-    let selectedIndex = event.target.select.options.selectedIndex;
-
-    let item = {
-      "name": event.target.name.value,
-      "quantity": parseInt(event.target.quantity.value),
-      "dateOfPurchase": event.target.dop.value,
-      "expiryDate": event.target.ed.value,
-      "purchasePrice": parseInt(event.target.pp.value),
-      "supplierID": parseInt(this.state.suppliers[selectedIndex].id),
-      "id": id
-    }
-    console.log("This is the selected item's id:", id);
-    console.log("This is the item:", item);
-    return this.props.onUpdate(id, item);
   }
-
-  render(){
-
-    const supplierOptions = this.state.suppliers.map((item) => {
-      return <option key={item.id} value={item.name}>{item.name}</option>
-    });
-
 
     return(
       <>
-      <form onSubmit={this.handleSubmit}> {/*why do the brackets need to be ommited here something about event becoming undefined.*/}
+      { dataItem ?
 
-        <label for="name">Item Name:</label>
-        <input type="text" name="name" id="name" defaultValue={this.props.item.name} />
-
-        <label for="quantity">Quantity:</label>
-        <input type="number" name="quantity" id="quantity" min="0" defaultValue={this.props.item.quantity} />
-
-        <label for="dop">Date of Purchase:</label>
-        <input type="text" name="dop" id="dop" defaultValue={this.props.item.dateOfPurchase} />
-
-        <label for="ed">Expiry Date:</label>
-        <input type="text" name="ed" id="ed" defaultValue={this.props.item.expiryDate} />
-
-        <label for="pp">Purchased Price</label>
-        <input type="number" name="pp" id="pp" step="0.01" min="0" defaultValue={this.props.item.purchasePrice} />
-
-        <label for="supplier">Supplier:</label>
-        <select id="select" name="select" id="supplier" defaultValue={this.findItemsSupplier()}>
-        {supplierOptions}
-        </select>
-
+        
+        <form onSubmit={(e) => submitEdit(e) } > {/*why do the brackets need to be ommited here something about event becoming undefined.*/}
+        
+        <label htmlFor="name">Item Name:</label>
+        <input type="text" name="name" id="name" defaultValue={  dataItem.itemName} onChange={e=>setItemName(e.currentTarget.value)} />
+        
+        <label htmlFor="quantity">Quantity:</label>
+        <input type="number" name="quantity" id="quantity" min="0" defaultValue={  dataItem.quantity} onChange={e=>setQuantity(e.currentTarget.value)} />
+        
+        <label htmlFor="dop">Date of Purchase:</label>
+        <input type="text" name="dop" id="dop" defaultValue={  dataItem.purchaseDate} onChange={e=>setPurchaseDate(e.currentTarget.value)} />
+        
+        <label htmlFor="ed">Expiry Date:</label>
+        <input type="text" name="ed" id="ed" defaultValue={  dataItem.expiryDate} onChange={e=>setExpiryDate(e.currentTarget.value)} />
+        
+        <label htmlFor="pp">Purchased Price</label>
+        <input type="number" name="pp" id="pp" step="0.01" min="0" defaultValue={  dataItem.purchaseP}  onChange={e=>setPurchaseP(e.currentTarget.value)} />
+        
+        <label htmlFor="supplier">Supplier:</label>
         <input type="submit" value="save" />
-      </form>
+        </form>
+         : <h1>loading</h1>
+      }
       </>
     )
-  }
+
 
 
 }

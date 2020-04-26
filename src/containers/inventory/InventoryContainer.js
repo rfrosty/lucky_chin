@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React,{useEffect,useState} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import InventoryList from '../../components/inventory/InventoryList.js';
 import ItemEditForm from '../../components/inventory/ItemEditForm.js';
@@ -8,36 +8,30 @@ import ConfirmDelete from '../../components/inventory/ConfirmDelete.js';
 import Request from '../../helpers/request.js'
 // import Item from '../../components/suppliers/SupplierList.js';
 
-class InventoryContainer extends Component {
+ 
+const InventoryContainer = (props) => {
 
-  constructor(props){
-    super(props);
-    this.state = {
-      inventory: [
-        {"name": "carrots", "quantity": 5, "dateOfPurchase": "4/4/20", "expiryDate": "4/5/20", "purchasePrice": 20.05, "supplierID": 2, "id": 1},
-        {"name": "wraps", "quantity": 7, "dateOfPurchase": "4/4/20", "expiryDate": "4/5/20", "purchasePrice": 8.70, "supplierID": 1, "id": 2},
-        {"name": "rice", "quantity": 2, "dateOfPurchase": "4/4/20", "expiryDate": "4/5/20", "purchasePrice": 12.60, "supplierID": 1, "id": 3}
-      ]
-    }
-    this.findItemById = this.findItemById.bind(this);
-    this.handleUpdate = this.handleUpdate.bind(this);
-    this.handlePost = this.handlePost.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
-  }
+  const [inventory,setInventory] = useState(null)
 
-  findItemById(id){
-    return this.state.inventory.find((item) => {
+
+      
+
+
+
+
+  function findItemById(id){
+    return inventory.find((item) => {
       return item.id === parseInt(id);
     });
   }
 
-  handleDelete(id){
-    let inventoryState = this.state.inventory;
+  function handleDelete(id){
+    let inventoryState =  inventory;
     let itemIndex = inventoryState.findIndex((element) => {
       return element.id === id;
     });
     inventoryState.splice(itemIndex, 1);
-    this.setState({inventory: inventoryState})
+      setInventory(inventoryState)
     // *FOR DB*
     // const request = new Request();
     // const url = '/pirates/' + id;
@@ -46,10 +40,10 @@ class InventoryContainer extends Component {
     // });
   }
 
-  handlePost(payload){
-    let inventoryState = this.state.inventory;
+  function handlePost(payload){
+    let inventoryState =  inventory;
     let newState = [...inventoryState, payload];
-    this.setState({inventory: newState})
+      setInventory(newState)
     // *FOR DB*
     // const request = new Request();
     // request.post('/pirates', pirate).then(() => {
@@ -57,15 +51,15 @@ class InventoryContainer extends Component {
     // })
   }
 
-  handleUpdate(id, item){
+  function handleUpdate(id, item){
     //*FIND INDEX OF ITEM.
-    let inventoryState = this.state.inventory;
+    let inventoryState =  inventory;
     let itemIndex = inventoryState.findIndex((element) => {
       return element.id === id;
     });
     // *CHANGE IT.
     inventoryState[itemIndex] = item;
-    this.setState({inventory: inventoryState})
+      setInventory(inventoryState)
 //---------------------------------------------------------------------------------------------//
 // ARESKY: navigation component. global state management using redux.
 // redirect tag.
@@ -77,7 +71,7 @@ class InventoryContainer extends Component {
     // })
   }
 
-  render(){
+
     return(
       <Router>
       <>
@@ -85,30 +79,32 @@ class InventoryContainer extends Component {
       <Switch>
 
         <Route exact path = "/inventory/new" render={() => {
-          return <InventoryCreateForm onFormSubmit={this.handlePost} />
+          return <InventoryCreateForm onFormSubmit={ handlePost} />
         }}/>
 
         <Route exact path="/inventory/:id/edit" render={(props) => {
         const id = props.match.params.id
-        const item = this.findItemById(id);
-        return <ItemEditForm item={item} onUpdate={this.handleUpdate} />
+        // const item = findItemById(id);
+        return <ItemEditForm item={id}  />
         }}/>
 
         <Route exact path="/inventory/:id/delete" render={(props) =>{
         const id = props.match.params.id
-        const item = this.findItemById(id);
-        return <ConfirmDelete item={item} onDelete={this.handleDelete} />
+        // const item =  findItemById(id);
+        // return <ConfirmDelete item={item} onDelete={ handleDelete} />
+        return <ConfirmDelete item={id}/>
+
         }}/>
 
         <Route render = {(props) => {
-          return <InventoryList inventory={this.state.inventory}/>
+          return <InventoryList inventory={ inventory}/>
         }}/>
 
       </Switch>
       </>
       </Router>
     )
-  }
+  
 
 }
 

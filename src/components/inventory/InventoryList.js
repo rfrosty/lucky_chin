@@ -63,10 +63,14 @@ const InventoryList = () => {
       <tbody>
       {renderedItems}
       </tbody>
+      <button><a href="/inventory/new">Add item</a></button>
+
     </Table>
+
   );
 }
 
+export default InventoryList;
 
 // const InventoryList = (props) => {
   
@@ -123,4 +127,3 @@ const InventoryList = () => {
 
 // }
 
-export default InventoryList;

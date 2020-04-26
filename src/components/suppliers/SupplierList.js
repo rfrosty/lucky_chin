@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Supplier from './Supplier';
 import {Table} from 'react-bootstrap'
 import firebase from '../../firebase'
 

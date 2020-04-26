@@ -1,6 +1,4 @@
-import React, {Component, useState} from 'react';
-// import Request from '../../helpers/request.js'
-import NeedSupplier from 'react';
+import React, {useState} from 'react';
 import firebase from '../../firebase'
 
 const InventoryCreateForm = () => {
@@ -51,10 +49,10 @@ const InventoryCreateForm = () => {
     <label for="pp">Purchased Price</label>
     <input type="number" name="pp" id="pp" step="0.01" min="0" value={purchaseP} onChange={e=>setPurchaseP(e.currentTarget.value)} />
 
-    <label for="supplier">Supplier:</label>
+    {/* <label for="supplier">Supplier:</label>
     <select id="select" name="select" id="supplier" >
-    {/* {supplierOptions} */}
-    </select>
+     {supplierOptions}
+    </select> */}
 
     <button><a href="/suppliers/new">Add new supplier</a></button>
 

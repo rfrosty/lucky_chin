@@ -1,5 +1,4 @@
 import React, {useState, useEffect } from 'react';
-import Item from './Item.js' //test if it works without dot.
 import {Table} from 'react-bootstrap'
 import firebase from '../../firebase'
 

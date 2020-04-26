@@ -19,8 +19,8 @@ const SupplierEditForm = ({supplier}) => {
         setDataItem(doc.data());
         setAddress(data.address)
         setName(data.name);
-        setPOC(data.poc)
-        setTelephoneNumber(doc.telephoneNumber)
+        setPOC(data.POC)
+        setTelephoneNumber(data.telephoneNumber)
 
       }
       else {

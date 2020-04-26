@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react';
+import React, { useState} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import SupplierList from '../../components/suppliers/SupplierList.js';
 import SupplierEditForm from '../../components/suppliers/SupplierEditForm.js';

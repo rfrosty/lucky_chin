@@ -13,16 +13,16 @@ const InventoryContainer = (props) => {
 
   const [inventory,setInventory] = useState(null)
 
-  function handlePost(payload){
-    let inventoryState =  inventory;
-    let newState = [...inventoryState, payload];
-      setInventory(newState)
-    // *FOR DB*
-    // const request = new Request();
-    // request.post('/pirates', pirate).then(() => {
-    //   window.location = '/pirates'
-    // })
-  }
+  // function handlePost(payload){
+  //   let inventoryState =  inventory;
+  //   let newState = [...inventoryState, payload];
+  //     setInventory(newState)
+  //   // *FOR DB*
+  //   // const request = new Request();
+  //   // request.post('/pirates', pirate).then(() => {
+  //   //   window.location = '/pirates'
+  //   // })
+  // }
 
     return(
       <Router>
@@ -31,7 +31,7 @@ const InventoryContainer = (props) => {
       <Switch>
 
         <Route exact path = "/inventory/new" render={() => {
-          return <InventoryCreateForm onFormSubmit={ handlePost} />
+          return <InventoryCreateForm  />
         }}/>
 
         <Route exact path="/inventory/:id/edit" render={(props) => {

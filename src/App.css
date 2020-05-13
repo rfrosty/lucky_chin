@@ -2,6 +2,12 @@
   text-align: center;
 }
 
+.button a {
+  color: white;
+  text-decoration: none;
+  background-color: transparent;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -31,3 +37,28 @@
 .table1 {
   right: 100px;
 }
+
+.homeButton {
+  margin-top: 100px;
+  height: 150px;
+  width: 300px;
+  margin-right: 15px;
+}
+.homeButton1 {
+  margin-top: 15px;
+  height: 150px;
+  width: 300px;
+  margin-right: 15px;
+}
+
+
+.btn-info {
+  color: #fff;
+  background-color: #7C7287;
+  border-color: #17a2b8;
+}
+
+.NavLi {
+  font-size: 23px;
+}
+

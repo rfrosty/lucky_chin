@@ -25,11 +25,15 @@ function useInventory(){
 
 const InventoryList = () => {
   
-
-  // const id = item.id.toString();
+  const [search, setSearch] = useState('')
 
   const inventoryItems = useInventory();
-  const renderedItems = inventoryItems.map((item, index) =>
+
+  const filteredSearch = inventoryItems.filter(item => {
+    return item.itemName.toLowerCase().includes(search.toLowerCase())
+   })
+
+  const renderedItems = filteredSearch.map((item, index) =>
    
   <tr key={index} className="list-item">
   <td>{item.itemName}</td>
@@ -45,8 +49,12 @@ const InventoryList = () => {
   
   )
 
+ 
   
+
   return(
+    <>
+    <input type="text" placeholder="Search Item Name" onChange={ e => setSearch(e.target.value)}/>
     <Table striped bordered hover className="table1">
       <thead>
         <tr>
@@ -62,10 +70,10 @@ const InventoryList = () => {
       <tbody>
       {renderedItems}
       </tbody>
-      <button><a href="/inventory/new">Add item</a></button>
-
     </Table>
+    <button><a href="/inventory/new">Add item</a></button>
 
+    </>
   );
 }
 

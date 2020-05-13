@@ -24,9 +24,14 @@ function useSuppliers(){
 
 const SupplierList = () => {
 
+  const [search, setSearch] = useState('')
   const suppliers = useSuppliers();
+
+  const filteredSearch = suppliers.filter( supplier => {
+    return supplier.name.toLowerCase().includes(search.toLowerCase())
+  })
   
-  const renderedSuppliers = suppliers.map((supplier, index) =>
+  const renderedSuppliers = filteredSearch.map((supplier, index) =>
   
   <tr key={index}>
       <td>{supplier.name}</td>
@@ -40,6 +45,8 @@ const SupplierList = () => {
   
      
   return (
+    <>
+    <input type="text" placeholder= "Search Supplier Name" onChange={ e => setSearch(e.target.value)}/>
     <Table striped bordered hover className="table1">
     <thead>
       <tr>
@@ -55,11 +62,10 @@ const SupplierList = () => {
     <tbody>
       {renderedSuppliers}
     </tbody>
-    <button><a href="/suppliers/new">Add supplier</a></button>
-
   </Table>
+  <button><a href="/suppliers/new">Add supplier</a></button>
 
-
+  </>
 
   );
 }

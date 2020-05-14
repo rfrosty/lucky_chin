@@ -15,7 +15,7 @@ const NavBar = (props) => {
           <Nav.Link className="NavLi"  href="/">Home</Nav.Link>
           <Nav.Link className="NavLi" href="/inventory">Inventory</Nav.Link>
           <Nav.Link className="NavLi" href="/suppliers">Suppliers</Nav.Link>
-          <Nav.Link className="NavLi" href="/stats">Stats</Nav.Link>
+          <Nav.Link className="NavLi" href="/dashboard">Stats</Nav.Link>
 
         </Nav>
       </Navbar.Collapse>

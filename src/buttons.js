@@ -14,7 +14,7 @@ const Buttons = () => {
                <div className="col-sm-7">
                <a href="/inventory"><Button variant="info" className="homeButton" style={{ fontWeight: 'bold', fontSize: '25px' }}> Inventory</Button></a>
                <a href="/suppliers"><Button variant="info" className="homeButton" style={{ fontWeight: 'bold', fontSize: '25px' }}>Suppliers</Button></a>
-               <Button variant="info" className="homeButton" style={{ fontWeight: 'bold', fontSize: '25px' }}>Stats</Button>
+               <a href="/dashboard"><Button variant="info" className="homeButton" style={{ fontWeight: 'bold', fontSize: '25px' }}>Stats</Button></a>
                </div>
                <div className="col-sm-7">
                <a href="/inventory/new"><Button variant="info" className="homeButton1" style={{ fontWeight: 'bold', fontSize: '25px' }}>Add New Item</Button></a>

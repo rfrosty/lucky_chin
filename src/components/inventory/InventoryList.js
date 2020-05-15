@@ -1,7 +1,7 @@
 import React, {useState, useEffect } from 'react';
 import {Table} from 'react-bootstrap'
 import firebase from '../../firebase'
-import DataTable from 'react-data-table-component';
+// import DataTable from 'react-data-table-component';
 
 
 function useInventory(){

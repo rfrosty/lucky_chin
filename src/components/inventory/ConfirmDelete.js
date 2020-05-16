@@ -9,10 +9,9 @@ const ConfirmDelete = ({item}) => { //do variables need to be spelled CamelCase
     return <p>This item has doesn't exist or has already been deleted.</p>
   }
 
-  let confirmDel = () => {
-    document.getElementById("DeleteConfirmation").innerHTML = "This record has been deleted!";
-
-  }
+  // let confirmDel = () => {
+  //   document.getElementById("DeleteConfirmation").innerHTML = "This record has been deleted!";
+  // }
 
   const successToast = () => {
       toast("success, item has been deleted", {
@@ -31,18 +30,20 @@ const ConfirmDelete = ({item}) => { //do variables need to be spelled CamelCase
     .doc(item)
     .delete();
     
-    // prompt("action completed")
-    confirmDel();
+    // confirmDel();
     successToast();
   }
-  toast.error("oh no error");
+  // toast.error("oh no error");
   return (
     <>
+      <div style={{marginLeft: "10px"}}>
       <p>Are you sure you want to delete '{item.itemName}'?</p>
       <button onClick={takeHomeAndDelete}>Yes</button>
       <button><a href="/inventory">No</a></button>
+      <button><a href="/">Go Back</a></button>
       <p id="DeleteConfirmation"></p>
       <ToastContainer draggable={false} transition={Zoom} autoClose={8000} />
+      </div>
     </>
   )
 

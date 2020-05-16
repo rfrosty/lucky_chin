@@ -7,7 +7,7 @@ const NavBar = (props) => {
       
 
     <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="/"><img src="/logos/lucky_chen.png" alt="Logo" height="150px" width="150px"/>
+      <Navbar.Brand href="/"><img src="/logos/lucky_chen.png" alt="Logo" height="100px" width="100px"/>
 </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav"/>
       <Navbar.Collapse id="basic-navbar-nav">

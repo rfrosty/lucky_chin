@@ -1,5 +1,7 @@
 import React, { useState, useEffect} from 'react';
-import firebase from '../../firebase'
+import firebase from '../../firebase';
+import {ToastContainer, toast, Zoom} from 'react-toastify';
+
 
 const SupplierEditForm = ({supplier}) => {
 
@@ -9,6 +11,14 @@ const SupplierEditForm = ({supplier}) => {
   const [POC, setPOC] = useState('')
   const [address, setAddress] = useState('')
   const [telephoneNumber, setTelephoneNumber] = useState('')
+
+  const successToast = () => {
+    toast("success, Supplier has been edited", {
+    className: "custom Toast",
+    draggable: true,
+    position: toast.POSITION.TOP_CENTER
+  });
+}
 
 
   const ref = firebase.firestore().collection('supplier').doc(supplier)
@@ -21,18 +31,15 @@ const SupplierEditForm = ({supplier}) => {
         setName(data.name);
         setPOC(data.POC)
         setTelephoneNumber(data.telephoneNumber)
-
       }
       else {
           console.log('error')
       }
     })
-
   }, [])
 
   // let confirmDel = () => {
   //   document.getElementById("DeleteConfirmation").innerHTML = "This record has been deleted!";
-
   // }
 
   const submitEdit = (event) => {
@@ -43,12 +50,13 @@ const SupplierEditForm = ({supplier}) => {
     
     event.preventDefault();
     // confirmDel();
+    successToast();
   }
 
   return(
     <>
     {dataItem ? 
-
+    <div style={{marginLeft: '20px'}}>
     <form onSubmit={(e) => submitEdit(e) }>
 
     <label htmlFor="name">Name:</label>
@@ -64,10 +72,13 @@ const SupplierEditForm = ({supplier}) => {
     <input type="text" name="POC" id="POC" defaultValue={dataItem.POC} onChange={e=>setPOC(e.currentTarget.value)} />
 
     <input type="submit" value="save" />
+    <button><a href="/suppliers">Cancel</a></button>
+    <button><a href="/">Go Home</a></button>
     {/* <p id="DeleteConfirmation"></p> */}
-
-  </form>
-
+    
+    </form>
+    <ToastContainer draggable={false} transition={Zoom} autoClose={8000} />
+    </div>
       : <h1>loading</h1>
     }
     </>

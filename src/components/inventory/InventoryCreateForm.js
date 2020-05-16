@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
-import firebase from '../../firebase'
+import firebase from '../../firebase';
+import {ToastContainer, toast, Zoom} from 'react-toastify';
+
 
 const InventoryCreateForm = () => {
   const [itemName, setItemName] = useState('')
@@ -7,6 +9,14 @@ const InventoryCreateForm = () => {
   const [purchaseDate, setPurchaseDate] = useState('')
   const [purchaseP, setPurchaseP] = useState('')
   const [expiryDate, setExpiryDate] = useState('')
+
+  const successToast = () => {
+    toast("success, item has been Added", {
+    className: "custom Toast",
+    draggable: true,
+    position: toast.POSITION.TOP_CENTER
+  });
+}
 
 
   function onSubmit(e){
@@ -29,9 +39,11 @@ const InventoryCreateForm = () => {
         setPurchaseP('')
         setExpiryDate('')
     })
+    successToast();
   }
 
   return (
+    <div style={{marginLeft: '20px'}}>
     <form onSubmit={onSubmit}> {/*why do the brackets need to be ommited here something about event becoming undefined.*/}
 
     <label for="name">Item Name:</label>
@@ -54,10 +66,13 @@ const InventoryCreateForm = () => {
      {supplierOptions}
     </select> */}
 
-    <button><a href="/suppliers/new">Add new supplier</a></button>
-
-    <input type="submit" value="Submit" /><br/>
-  </form>
+    {/* <button><a href="/suppliers/new">Add new supplier</a></button> */}
+    <input type="submit" value="Submit"/>
+    <button><a href="/inventory">Cancel</a></button>
+    <button><a href="/">Home</a></button>
+    </form>
+    <ToastContainer draggable={false} transition={Zoom} autoClose={8000} />
+    </div>
   )
 }
 

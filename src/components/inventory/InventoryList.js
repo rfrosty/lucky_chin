@@ -65,6 +65,7 @@ const bgcol = ((item) => {
     <>
     
     <input type="text" placeholder="Search Item Name" onChange={ e => setSearch(e.target.value)}/>
+    <button><a href="/inventory/new">Add item</a></button>
     <Table striped bordered hover className="table1">
       <thead>
         <tr>
@@ -81,7 +82,6 @@ const bgcol = ((item) => {
       {renderedItems}
       </tbody>
     </Table>
-    <button><a href="/inventory/new">Add item</a></button>
     </>
   );
 }

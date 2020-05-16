@@ -1,5 +1,7 @@
 import React,{useEffect,useState} from 'react';
 import firebase from '../../firebase'
+import {ToastContainer, toast, Zoom} from 'react-toastify';
+
 
 const ItemEditForm = ({item}) => {
 
@@ -12,6 +14,14 @@ const ItemEditForm = ({item}) => {
   const [purchaseP, setPurchaseP] = useState('')
   const [expiryDate, setExpiryDate] = useState('')
 
+  const successToast = () => {
+    toast("success, item has been edited", {
+    className: "custom Toast",
+    draggable: true,
+    position: toast.POSITION.TOP_CENTER
+  });
+}
+
   const ref = firebase.firestore().collection('inventory').doc(item)
   useEffect(() =>{
       ref.get().then(function(doc) {
@@ -22,28 +32,25 @@ const ItemEditForm = ({item}) => {
         setQuantity(data.quantity)
         setPurchaseDate(data.purchaseDate)
         setPurchaseP(data.purchaseP)
-        setExpiryDate(data.expiryDate)
-           
+        setExpiryDate(data.expiryDate)      
       } else {
           // doc.data() will be undefined in this case
-          
       }
   })
-    
   }, [])
 
   const submitEdit = (event) => {
-
       const result =  {quantity: quantity, expiryDate: expiryDate, itemName: itemName, purchaseDate: purchaseDate, purchaseP: purchaseP}
     ref.set(result).then(console.log('sucess upload'));
     event.preventDefault();
+    successToast();
   }
 
     return(
       <>
       { dataItem ?
 
-        
+        <div style={{marginLeft: '10px'}}>
         <form onSubmit={(e) => submitEdit(e) } > {/*why do the brackets need to be ommited here something about event becoming undefined.*/}
         
         <label htmlFor="name">Item Name:</label>
@@ -61,9 +68,13 @@ const ItemEditForm = ({item}) => {
         <label htmlFor="pp">Purchased Price</label>
         <input type="number" name="pp" id="pp" step="0.01" min="0" defaultValue={  dataItem.purchaseP}  onChange={e=>setPurchaseP(e.currentTarget.value)} />
         
-        <label htmlFor="supplier">Supplier:</label>
+        {/* <label htmlFor="supplier">Supplier:</label> */}
         <input type="submit" value="save" />
+        <button><a href="/inventory">Cancel</a></button>
+        <button><a href="/">Go Home</a></button>
         </form>
+         <ToastContainer draggable={false} transition={Zoom} autoClose={8000} />
+         </div>
          : <h1>loading</h1>
       }
       </>

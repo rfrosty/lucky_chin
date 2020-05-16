@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import firebase from '../../firebase';
+import {Form, Button} from 'react-bootstrap';
 import {ToastContainer, toast, Zoom} from 'react-toastify';
 
 
@@ -43,8 +44,42 @@ const InventoryCreateForm = () => {
   }
 
   return (
-    <div style={{marginLeft: '20px'}}>
-    <form onSubmit={onSubmit}> {/*why do the brackets need to be ommited here something about event becoming undefined.*/}
+    <div style={{marginLeft: '150px', marginRight: '150px'}}>
+  <Form onSubmit={onSubmit}>
+
+    <Form.Group controlId="formBasicEmail">
+      <Form.Label>Item Name</Form.Label>
+      <Form.Control size="lg" placeholder="Name" type="text" name="name" id="name" value={itemName} onChange={e=>setItemName(e.currentTarget.value)} />
+    </Form.Group>
+
+    <Form.Group controlId="formBasicPasswod">
+      <Form.Label>Quantity</Form.Label>
+      <Form.Control size="lg" placeholder="Quantity" type="number" name="quantity" min="0" id="quantity" value={quantity} onChange={e=>setQuantity(e.currentTarget.value)} />
+    </Form.Group>
+
+    <Form.Group controlId="formBasicPassord">
+      <Form.Label>Purchase Date</Form.Label>
+      <Form.Control size="lg" placeholder="Purchase Date" type="date" name="dop" id="dop" value={purchaseDate} onChange={e=>setPurchaseDate(e.currentTarget.value)} />
+    </Form.Group>
+
+    <Form.Group controlId="formBasicPasword">
+      <Form.Label>Expiry Date</Form.Label>
+      <Form.Control size="lg" placeholder="Expiry Date" type="date" name="ed" id="ed" value={expiryDate} onChange={e=>setExpiryDate(e.currentTarget.value)} />
+    </Form.Group>
+
+    <Form.Group controlId="formBaicPassword">
+      <Form.Label>Purchase Date</Form.Label>
+      <Form.Control size="lg" placeholder="Purchase Date" type="number" name="pp" id="pp" step="0.01" min="0" value={purchaseP} onChange={e=>setPurchaseP(e.currentTarget.value)} />
+    </Form.Group>
+
+    <Button variant="primary" type="submit" value="submit"> Submit</Button>
+    <Button><a href="/inventory">Cancel</a></Button>
+    <Button><a href="/">Home</a></Button>
+
+  </Form>
+  <ToastContainer draggable={false} transition={Zoom} autoClose={8000} />
+
+    {/* <form onSubmit={onSubmit}> 
 
     <label for="name">Item Name:</label>
     <input type="text" name="name" id="name" value={itemName} onChange={e=>setItemName(e.currentTarget.value)} />
@@ -59,7 +94,7 @@ const InventoryCreateForm = () => {
     <input type="date" name="ed" id="ed" value={expiryDate} onChange={e=>setExpiryDate(e.currentTarget.value)}/>
 
     <label for="pp">Purchased Price</label>
-    <input type="number" name="pp" id="pp" step="0.01" min="0" value={purchaseP} onChange={e=>setPurchaseP(e.currentTarget.value)} />
+    <input type="number" name="pp" id="pp" step="0.01" min="0" value={purchaseP} onChange={e=>setPurchaseP(e.currentTarget.value)} /> */}
 
     {/* <label for="supplier">Supplier:</label>
     <select id="select" name="select" id="supplier" >
@@ -67,11 +102,11 @@ const InventoryCreateForm = () => {
     </select> */}
 
     {/* <button><a href="/suppliers/new">Add new supplier</a></button> */}
-    <input type="submit" value="Submit"/>
+    {/* <input type="submit" value="Submit"/>
     <button><a href="/inventory">Cancel</a></button>
     <button><a href="/">Home</a></button>
     </form>
-    <ToastContainer draggable={false} transition={Zoom} autoClose={8000} />
+    <ToastContainer draggable={false} transition={Zoom} autoClose={8000} /> */}
     </div>
   )
 }

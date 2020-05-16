@@ -47,6 +47,7 @@ const SupplierList = () => {
   return (
     <>
     <input type="text" placeholder= "Search Supplier Name" onChange={ e => setSearch(e.target.value)}/>
+    <button><a href="/suppliers/new">Add supplier</a></button>
     <Table striped bordered hover className="table1">
     <thead>
       <tr>
@@ -63,7 +64,6 @@ const SupplierList = () => {
       {renderedSuppliers}
     </tbody>
   </Table>
-  <button><a href="/suppliers/new">Add supplier</a></button>
 
   </>
 

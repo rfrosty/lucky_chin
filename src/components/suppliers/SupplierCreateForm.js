@@ -1,6 +1,8 @@
 import React, { useState} from 'react';
 import firebase from '../../firebase'
 import {ToastContainer, toast, Zoom} from 'react-toastify';
+import {Form, Button} from 'react-bootstrap';
+
 
 const SupplierCreateForm = () => {
   const [name, setName] = useState('')
@@ -38,8 +40,37 @@ const SupplierCreateForm = () => {
 }
 
 return (
-  <div style={{marginLeft:'20px'}}>
-    <form onSubmit={onSubmit}>
+  <div style={{marginLeft:'150px', marginRight: '150px'}}>
+
+    <Form onSubmit={onSubmit}>
+      <Form.Group controlId="formBasicEmail">
+        <Form.Label>Name</Form.Label>
+        <Form.Control placeholder="Name" type="text" name="name" id="name" value={name} onChange={e=>setName(e.currentTarget.value)} />
+      </Form.Group>
+
+      <Form.Group controlId="formBasicPassword">
+        <Form.Label>Address</Form.Label>
+        <Form.Control placeholder="Address" type="text" name="address" id="address" min="0" value={address} onChange={e=>setAddress(e.currentTarget.value)} />
+      </Form.Group>
+
+      <Form.Group controlId="formBasicPassword">
+        <Form.Label>Contact Num</Form.Label>
+        <Form.Control placeholder="Contact Num" type="text" name="telephoneNumber" id="telephoneNumber" value={telephoneNumber} onChange={e=>setTelephoneNumber(e.currentTarget.value)} />
+      </Form.Group>
+
+      <Form.Group controlId="formBasicPassword">
+        <Form.Label>Point of Contact</Form.Label>
+        <Form.Control placeholder="POC Name" type="text" name="POC" id="POC" value={POC} onChange={e=>setPOC(e.currentTarget.value)} />
+      </Form.Group>
+
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
+      <Button><a href="/suppliers">Cancel</a></Button>
+    <Button><a href="/">Home</a></Button>
+    </Form>
+
+    {/* <form onSubmit={onSubmit}>
       <label for="name">Name:</label>
       <input type="text" name="name" id="name" value={name} onChange={e=>setName(e.currentTarget.value)}/>
       <label for="address">Address:</label>
@@ -51,7 +82,7 @@ return (
       <input type="submit" value="save" />
       <button><a href="/inventory">Cancel</a></button>
       <button><a href="/">Home</a></button>
-    </form>
+    </form> */}
       <ToastContainer draggable={false} transition={Zoom} autoClose={8000} />
       </div>
 

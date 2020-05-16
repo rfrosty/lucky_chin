@@ -1,6 +1,8 @@
 import React, { useState, useEffect} from 'react';
 import firebase from '../../firebase';
 import {ToastContainer, toast, Zoom} from 'react-toastify';
+import {Form, Button} from 'react-bootstrap';
+
 
 
 const SupplierEditForm = ({supplier}) => {
@@ -57,7 +59,36 @@ const SupplierEditForm = ({supplier}) => {
     <>
     {dataItem ? 
     <div style={{marginLeft: '20px'}}>
-    <form onSubmit={(e) => submitEdit(e) }>
+
+    <Form onSubmit={(e) => submitEdit(e) }>
+      <Form.Group controlId="formBasicEmail">
+        <Form.Label>Name</Form.Label>
+        <Form.Control placeholder="Name" type="text" name="name" id="name" defaultValue={dataItem.name} onChange={e=>setName(e.currentTarget.value)}/>
+      </Form.Group>
+
+      <Form.Group controlId="formBasicPassword">
+        <Form.Label>Address</Form.Label>
+        <Form.Control placeholder="Address" type="text" name="address" id="address" min="0" defaultValue={dataItem.address} onChange={e=>setAddress(e.currentTarget.value)}  />
+      </Form.Group>
+
+      <Form.Group controlId="formBasicPassword">
+        <Form.Label>Contact Num</Form.Label>
+        <Form.Control placeholder="Contact Num" type="number" name="telephoneNumber" id="telephoneNumber" defaultValue={dataItem.telephoneNumber} onChange={e=>setTelephoneNumber(e.currentTarget.value)}  />
+      </Form.Group>
+
+      <Form.Group controlId="formBasicPassword">
+        <Form.Label>Point of Contact</Form.Label>
+        <Form.Control placeholder="POC Name" type="text" name="POC" id="POC" defaultValue={dataItem.POC} onChange={e=>setPOC(e.currentTarget.value)}  />
+      </Form.Group>
+
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
+      <Button><a href="/suppliers">Cancel</a></Button>
+      <Button><a href="/">Home</a></Button>
+    </Form>
+
+    {/* <form onSubmit={(e) => submitEdit(e) }>
 
     <label htmlFor="name">Name:</label>
     <input type="text" name="name" id="name" defaultValue={dataItem.name} onChange={e=>setName(e.currentTarget.value)}/>
@@ -74,9 +105,9 @@ const SupplierEditForm = ({supplier}) => {
     <input type="submit" value="save" />
     <button><a href="/suppliers">Cancel</a></button>
     <button><a href="/">Go Home</a></button>
-    {/* <p id="DeleteConfirmation"></p> */}
+     <p id="DeleteConfirmation"></p> 
     
-    </form>
+    </form> */}
     <ToastContainer draggable={false} transition={Zoom} autoClose={8000} />
     </div>
       : <h1>loading</h1>
